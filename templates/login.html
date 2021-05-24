@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Inicia Sesion
+{% endblock %}
+
+{% block main %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col"></div>
+        <div class= "col">
+            <form action="/login" method="post">
+            <div class="form-group" bis_skin_checked="1">
+                <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Usuario" type="text"/>
+            </div>
+            <br>
+            <div class="form-group">
+                <input class="form-control" name="password" placeholder="Contraseña" type="password"/>
+            </div>
+            <br>
+            <button class="btn btn-primary" type="submit">Inicia Sesion</button>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col">
+           <img src = "https://ars.els-cdn.com/content/image/1-s2.0-S0009250918305359-mmc1.gif" class="img-fluid" alt="TdeQ">
+        </div>
+        <div class ="col">
+            <h2>¿Que es la transferencia de calor?</h2>
+            <p>
+                La <strong>transferencia de calor</strong> es una ciencia básica que trata de la
+                rapidez de transferencia de <em>energía térmica</em>. Tiene una amplia área de
+                aplicación que va desde los sistemas biológicos hasta aparatos domésticos
+                comunes, pasando por los edificios residenciales y comerciales, los procesos
+                industriales, los aparatos electrónicos y el procesamiento de alimentos.
+                Comienza a conocer mas, <a href="/register">registrate ya!</a>
+            </p>    
+        </div>
+    </div>
+</div>
+    
+    
+    
+    
+    
+{% endblock %}
