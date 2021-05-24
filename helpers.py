@@ -39,13 +39,13 @@ def fourier(material, A, T_1, T_2, deltax):
     Q_conduccion = k*A*(deltaT/deltax)    # Tasa de TdQ [W]
     return Q_conduccion
 
-def newton(h, A, T, T_s)
+def newton(h, A, T, T_s):
     """Ecuacion de enfriamento de Newton para TdQ por conveccion entre un solido y un fluido"""
     deltaT = T-T_s                  # Gradiente impulsor de TdQ [K]
     Q_conv = h*A*deltaT             # Tasa de TdQ [W]
     return Q_conveccion
     
-def boltzmann(emissivity, T, T_2)
+def boltzmann(emissivity, T, T_2):
     """Ecuacion de Stefan Boltzmann para el intercambio de calor por radiacion entre dos superficies"""
     Q_radiacion = q_rad(emissivity, T, T_2) # Tasa de TdQ por unidad de Area [W/m2]
     return Q_radiacion 

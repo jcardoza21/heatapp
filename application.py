@@ -143,7 +143,6 @@ def login():
 @app.route("/logout")
 def logout():
     """Cerrar sesion"""
-    
     # Limpiar sesion
     session.clear()
     
