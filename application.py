@@ -149,7 +149,11 @@ def logout():
     
     # Redireccionar al login
     return redirect("/")
-
+    
+@app.route("/about")
+def about():
+    """Acerca de"""
+    return render_template("about.html")
 
 def errorhandler(e):
     """Handle error"""
