@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block main %}
-<script src="/static/scripts.js"></script>
+<script src="/static/scripts-examples.js"></script>
+
 <div class="container-fluid">
     <div class="row">
         <h1><i class="bi bi-patch-check"></i> Ejemplos de Transferencia de Calor</h1>
@@ -16,7 +17,7 @@
         <div class="col">
             <h2><i class="bi bi-image-alt"></i> El sol calienta a la tierra</h2>
             <p id="ejemplo1-text">
-                <ul>
+                <ul id = "aux_1">
                     <li>¿Qué mantiene nuestro planeta a una temperatura que pueda sustentar la vida?</li>
                     <li>¿Por qué algunas partes del planeta son más cálidas que otras?</li>
                     <li>¿Cómo se relaciona la transferencia de energía térmica con los terremotos y los volcanes?</li>
@@ -24,13 +25,13 @@
             </p>
             <br>
             <div align="center">
-                <button type="button" class="btn btn-primary" onclick= "example1(conduccion)">Conduccion</button>
-                <button type="button" class="btn btn-secondary" onclick="example1(conveccion)">Conveccion</button>
-                <button type="button" class="btn btn-dark" onclick="example1(radiacion)">Radiacion</button>
+                <button type="button" class="btn btn-primary" onclick="example1_conduccion()">Conduccion</button>
+                <button type="button" class="btn btn-secondary" onclick="example1_conveccion()">Conveccion</button>
+                <button type="button" class="btn btn-dark" onclick="example1_radiacion()">Radiacion</button>
             </div>
         </div>
-        <div class="col" id ="ejemplo1-img">
-            <img src="https://pbslm-contrib.s3.amazonaws.com/WGBH/conv16/conv16-int-thermalenergy/images/earth_science/earth_1.gif" class ="img-fluid" alt="Tierra fija">
+        <div class="col">
+            <img id="ejemplo1-img" src="https://pbslm-contrib.s3.amazonaws.com/WGBH/conv16/conv16-int-thermalenergy/images/earth_science/earth_1.gif" class ="img-fluid" alt="Tierra fija">
 
         </div>
     </div>
@@ -39,9 +40,9 @@
     <div class="row">
         <div class="col">
             <h2><i class="bi bi-tree"></i> Alrededor de una fogata</h2>
-            <p>
+            <p id="ejemplo2-text">
                 <strong> Imagínate en una fogata.</strong>
-                <ul>
+                <ul id="aux_2">
                     <li>¿Que notaste?</li>
                     <li>¿Por qué podrías sentirte más caliente?</li>
                     <li>¿Qué hace que el malvavisco se derrita?</li>
@@ -51,13 +52,13 @@
             </p>
             <br>
             <div align="center">
-                <button type="button" class="btn btn-primary">Conduccion</button>
-                <button type="button" class="btn btn-secondary">Conveccion</button>
-                <button type="button" class="btn btn-dark">Radiacion</button>
+                <button type="button" class="btn btn-primary" onclick="example2_conduccion()">Conduccion</button>
+                <button type="button" class="btn btn-secondary" onclick="example2_conveccion()">Conveccion</button>
+                <button type="button" class="btn btn-dark" onclick="example2_radiacion()">Radiacion</button>
             </div>
         </div>
         <div class="col">
-            <img src="https://pbslm-contrib.s3.amazonaws.com/WGBH/conv16/conv16-int-thermalenergy/images/physical_science/fire1.gif" Class ="img-fluid" alt="Fogata fija">
+            <img id="ejemplo2-img" src="https://pbslm-contrib.s3.amazonaws.com/WGBH/conv16/conv16-int-thermalenergy/images/physical_science/fire1.gif" Class ="img-fluid" alt="Fogata fija">
         </div>
     </div>
     <br>
