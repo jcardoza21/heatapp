@@ -5,13 +5,41 @@
 {% endblock %}
 
 {% block main %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            
+<form action="/convection" method="post">
+    <div class="container-fluid">
+
+         <div class="row align-items-center">
+            <div class="col">
+
+                <h2>Casos comunes:</h2>
+                 <select class="form-select" name="case" id="">
+                     <option disabled selected value> Configuración:</option>
+                     <optgroup label="Convección libre">
+                     <option value="v_plates">Placa vertical</option>
+                     <option value="h_plates">Placa horizontal</option>
+                     <option value="cylinder">Cilindros horizontal</option>
+                     </optgroup>
+                </select>
+            </div>
+
+            <div class="col" align="center">
+                <h2> Convección</h2>
+                <p style="text-align: justify;"> La <strong>convección</strong> se produce únicamente por medio de materiales fluidos. Éstos, al calentarse, aumentan de volumen y, por lo tanto, disminuyen su densidad y ascienden desplazando el fluido que se encuentra en la parte superior y que está a menor temperatura. Lo que se llama convección en sí, es el transporte de calor por medio de las corrientes ascendente y descendente del fluido.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                 <img src="https://media1.tenor.com/images/1d6e59a494718d541ebed21eedccd00a/tenor.gif?itemid=15910394" alt="elmo modo diablo" class="img-thumbnail">
+            </div>
+
+            <div class ="col">
+                <h2> 2</h2>
+                <p> amjniifkedx</p>
+            </div>
         </div>
     </div>
-</div>
+</form>
 
 {% endblock %}
 

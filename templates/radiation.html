@@ -5,13 +5,48 @@
 {% endblock %}
 
 {% block main %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            
+<form action="/convection" method="post">
+    <div class="container-fluid">
+
+         <div class="row align-items-center">
+            <div class="col">
+
+                <h2>Radiación de un cuerpo</h3>
+            </div>
+
+            <div class="col" align="center">
+                <h2> Radiación</h2>
+                <p style="text-align: justify;"> La <strong>radiación térmica</strong> o radiación calorífica es la radiación emitida por un cuerpo
+                debido a su temperatura. Esta radiación es radiación electromagnética que se genera por el movimiento térmico de las partículas cargadas que hay en la materia.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+
+                 <div class= "form-group">
+                     <input class="form-control" name="t1" placeholder="Temperatura incial" type="number"/>
+                </div>
+                <br>
+
+                <div class= "form-group">
+                     <input class="form-control" name="t2" placeholder="Temperatura final" type="number"/>
+                </div>
+                <br>
+
+                <div class= "form-group">
+                     <input class="form-control" name="emisivity" placeholder="Emisividad" type="number"/>
+                </div>
+                <br>
+            </div>
+
+            <div class ="col">
+                <h2> 2</h2>
+                <p> amjniifkedx</p>
+            </div>
         </div>
     </div>
-</div>
+</form>
 
 {% endblock %}
 

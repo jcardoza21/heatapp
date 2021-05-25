@@ -17,7 +17,7 @@ def after_request(response):
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
     return response
-    
+
 # Configurar sesion para utilizar el sistema de archivos en vez de cookies
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
@@ -56,7 +56,22 @@ def convection():
 @login_required
 def radiation():
     """Calculos de Radiacion"""
-    #TODO
+     if request.method == "POST":
+
+        t1=request.form.get("t1")
+        t2=request.form.get("t2")
+        emisivity=request.form.get("emisivity")
+
+
+
+
+
+
+
+
+
+
+
     return render_template("radiation.html")
 
 
@@ -66,90 +81,90 @@ def examples():
     """Ejemplos de Transferencia de Calor"""
     #TODO
     return render_template("examples.html")
-    
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Registrar al usuario"""
-    
+
     # Metodo POST
     if request.method == "POST":
-        
+
         # Validar nombre de usario
         if not request.form.get("username"):
             return apology("Debe introducir un nombre de usuario :s", 400)
-        
-        # Validar contraseña 
+
+        # Validar contraseña
         elif not request.form.get("password"):
             return apology("Debe introducir una contraseña :s", 400)
-        
+
         # Validar que contraseña y confirmacion coincidan
         elif not request.form.get("password") == request.form.get("confirmation"):
             return apology("Contraseñas no coinciden :c", 400)
-        
+
         # Generar hash para la contraseña
         hash = generate_password_hash(request.form.get("password"))
-        
+
         # Almacenar usuario en la DB
         new_user_id = db.execute("INSERT INTO users (username, hash) VALUES (:username, :hash)",username = request.form.get("username"), hash=hash)
-        
+
         # Si ya existe el usuario:
         if not new_user_id:
             return apology("Usuario ya registrado :x", 400)
-        
+
         session["user_id"] = new_user_id
         flash("Ya te has registrado!! :D")
-        
+
         return redirect(url_for("index"))
     else:
         return render_template("register.html")
-    
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Iniciar sesion"""
-    
+
     # Limpiar sesiones anteriores
     #session.clear()
-    
+
     # Metodo POST
     if request.method == "POST":
-        
+
         # Asegurar que el usuario haya sido enviado
         if not request.form.get("username"):
             return apology("Debe introducir un nombre de usuario :s", 403)
-        
+
         # Asegurar que la contraseña haya sido enviada
         elif not request.form.get("password"):
             return apology("Debe introducir una contraseña :s", 403)
-        
+
         # Consultar en DB el usuario
         rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
-        
+
         # Asegurarse que el usuario existe y la contraseña es correcta
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
             return apology("Usuario y/o contraseña invalida :x", 403)
-        
+
         # Recordar cual usuario inicio sesion
         session["user_id"] = rows[0]["id"]
-        
+
         # Redireccionar a la pagina de inicio
         return redirect("/")
-    
+
     # Metodo GET
-    else: 
+    else:
         return render_template("login.html")
 
 
 @app.route("/logout")
 def logout():
     """Cerrar sesion"""
-    
+
     # Limpiar sesion
     session.clear()
-    
+
     # Redireccionar al login
     return redirect("/")
-    
+
 @app.route("/about")
 def about():
     """Acerca de"""

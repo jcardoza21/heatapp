@@ -1,17 +1,46 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Conduccion
+    Conducción
 {% endblock %}
 
 {% block main %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            
+<form action="/conduction" method="post">
+    <div class="container-fluid">
+
+         <div class="row align-items-center">
+            <div class="col">
+
+                <h2>Casos comunes:</h2>
+                 <select class="form-select" name="case" id="">
+                     <option disabled selected value> Configuración:</option>
+                     <option value="plates">Dos placas</option>
+                     <option value="cylinder">Cilindro hueco</option>
+                     <option value="pipe_cylinder">Cilindros concentricos</option>
+                </select>
+            </div>
+
+            <div class="col" align="center">
+                <h2> Conducción</h2>
+                <p style="text-align: justify;"> La <strong>conducción</strong> es el mecanismo de transferecia de calor en escala atómica
+                a través de la materia por actividad molecular, por el choque de unas moléculas con otras,
+                donde las partáculas más enérgeticas le entregan energía a las menos energeticas, produciendo
+                un flujo de calor desde las temperaturas más altas a las más bajas.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                 <img src="https://media1.tenor.com/images/1d6e59a494718d541ebed21eedccd00a/tenor.gif?itemid=15910394" alt="elmo modo diablo" class="img-thumbnail">
+            </div>
+
+            <div class ="col">
+                <h2> 2</h2>
+                <p> amjniifkedx</p>
+            </div>
         </div>
     </div>
-</div>
+</form>
 
 {% endblock %}
 
