@@ -42,7 +42,7 @@ def fourier(material, A, T_1, T_2, deltax):
 def newton(h, A, T, T_s):
     """Ecuacion de enfriamento de Newton para TdQ por conveccion entre un solido y un fluido"""
     deltaT = T-T_s                  # Gradiente impulsor de TdQ [K]
-    Q_conv = h*A*deltaT             # Tasa de TdQ [W]
+    Q_conveccion = h*A*deltaT             # Tasa de TdQ [W]
     return Q_conveccion
     
 def boltzmann(emissivity, T, T_2):
