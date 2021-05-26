@@ -9,9 +9,82 @@
 
 <div class="container-fluid">
     <div class="row">
+        <h1><i class="bi bi-patch-check"></i> Bienvenido...</h1>
+    </div>
+    <hr>
+    <div class="row">
         <div class="col">
-            
+            <h2><i class="bi bi-lightning-charge"></i> ¿Que es la Energia Termica?</h2>
+            <p>
+                Toda la materia está formada por partículas en constante movimiento. Esta energía de movimiento se conoce como <strong>energía cinética</strong>. Todas las partículas no tienen la misma cantidad de energía cinética, por lo que cuando medimos la temperatura de una sustancia, estamos encontrando la energía cinética promedio de sus partículas.
+            </p>
+            <p>
+                La energía térmica de una sustancia depende de su temperatura, así como de la cantidad de partículas que contiene. Una taza de agua y una piscina de agua pueden tener la misma temperatura, pero la piscina contiene más energía térmica porque contiene mucha más agua.
+                La energía térmica <em>“fluye”</em> de áreas más cálidas a áreas más frías. El calor es una medida de este flujo. Esta transferencia de energía térmica puede ocurrir de tres formas: <strong>conducción, convección y radiación.</strong>
+            </p>
         </div>
+        <div class="col" align="center">
+            <img id="particulas-img" src="https://pbslm-contrib.s3.amazonaws.com/WGBH/conv16/conv16-int-thermalenergy/images/intro/intro_FIN.gif" alt="Particulas moviendose" class="img-thumbnail">
+            <div class="progress" bis_skin_checked="1">
+                <div id="particulas-progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;" bis_skin_checked="1"></div>
+            </div>
+            <div>
+                <button id="temperature-minus" type="button" class="btn btn-primary" onclick="disminuir()"><i class="bi bi-dash-square"></i></button>
+                <button id="temperature-plus" type="button" class="btn btn-danger" onclick="aumentar()"><i class="bi bi-plus-square"></i></button>
+            </div>
+            <div align="center">
+                <small class="text-muted">Aumente y disminuya la temperatura del gas que se ilustra aquí haciendo clic en los botones + y -. Observe lo que sucede con la velocidad de las partículas a medida que cambia la temperatura.</small>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col align-self-center" align="center">
+            <img src="http://1.bp.blogspot.com/_gfjrPgwHVSU/TLJg7FDFtoI/AAAAAAAAAA4/L6h1G3-HJPA/s1600/Gr%25E1fico6.gif" class="img-fluid" alt="Direccion del calor">
+        </div>
+        <div class="col" align="right">
+            <h2><i class="bi bi-slash-circle"></i> Diferencia entre la Transferencia de Calor y la Termodinamica</h2>
+            <p>
+                La termodinámica trata de los estados de equilibrio y de los cambios desde un estado de equilibrio hacia otro. Por otra parte, la transferencia de calor se 
+                ocupa de los sistemas en los que falta el equilibrio térmico y, por lo tanto, existe un fenómeno de <strong>no equilibrio</strong>. Por lo tanto, el estudio de la transferencia de
+                no puede basarse sólo en los principios de la termodinámica.</p><p>Sin embargo,
+                las leyes de la termodinámica ponen la estructura para la ciencia de la 
+                transferencia de calor. En la <em>primera ley</em> se requiere que la razón de la
+                transferencia de energía hacia un sistema sea igual a la razón de incremento
+                de la energía de ese sistema. En la <em>segunda ley </em> se requiere que el calor se
+                transfiera en la dirección de la temperatura decreciente <small class="text-muted">(como en la figura).</small>
+            </p>       
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <h2><i class="bi bi-thermometer-half"></i> Diferencial de Temperatura</h2>
+            <p>El requisito básico para la transferencia de calor es la presencia de una <strong>diferencia
+            de temperatura</strong>. No puede haber transferencia neta de calor entre dos
+            medios que están a la misma temperatura. La diferencia de temperatura es la
+            <em>fuerza impulsora</em> para la transferencia de calor, precisamente como la diferencia
+            de tensión es la fuerza impulsora para el flujo de corriente eléctrica y la
+            diferencia de presión es la fuerza impulsora para el flujo de fluidos.</p><p>La velocidad de la transferencia de calor en cierta dirección depende de la magnitud
+            del gradiente de temperatura (la diferencia de temperatura por unidad
+            de longitud o la razón de cambio de la temperatura en esa dirección). A mayor
+            gradiente de temperatura, mayor es la razón de la transferencia de calor.</p>
+        </div>
+        <div class="col align-self-center" align="center">
+            <img src="https://media2.giphy.com/media/qjkqMulgtF1Sw/giphy.gif" alt="flir-img" class="img-thumbnail">
+            <small class="text-muted">Una imagen FLIR (Sistema Infrarrojo de Barrido Frontal) donde se pueden apreciar las zonas a mayor temperatura (amarillo) y menor temperatura (morado)</small>
+        </div>
+    </div>
+    <hr>
+    <br>
+    <br>
+    <div class="row" align="center">
+        <figure class="text-center">
+            <blockquote class="blockquote">
+                 <p class="mb-0">La salud es la justa medida entre el calor y el frío.</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">Aristoteles</figcaption>
+        </figure>
     </div>
 </div>
 
