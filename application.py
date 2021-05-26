@@ -5,7 +5,7 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from helpers import apology, login_required, fourier, newton, boltzmann
+from helpers import login_required, fourier, newton, boltzmann
 
 # Inicializar aplicacion
 app = Flask(__name__)
@@ -32,7 +32,6 @@ db= SQL("sqlite:///heatapp.db")
 @login_required
 def index():
     """Pagina de Inicio"""
-    #TODO
     return render_template("index.html")
 
 
@@ -76,15 +75,18 @@ def register():
         
         # Validar nombre de usario
         if not request.form.get("username"):
-            return apology("Debe introducir un nombre de usuario :s", 400)
+            flash("Debe introducir un nombre de usuario :s")
+            return redirect(url_for("register"))
         
         # Validar contraseña 
         elif not request.form.get("password"):
-            return apology("Debe introducir una contraseña :s", 400)
+            flash("Debe introducir una contraseña :s")
+            return redirect(url_for("register"))
         
         # Validar que contraseña y confirmacion coincidan
         elif not request.form.get("password") == request.form.get("confirmation"):
-            return apology("Contraseñas no coinciden :c", 400)
+            flash("Contraseñas no coinciden :c")
+            return redirect(url_for("register"))
         
         # Generar hash para la contraseña
         hash = generate_password_hash(request.form.get("password"))
@@ -94,12 +96,13 @@ def register():
         
         # Si ya existe el usuario:
         if not new_user_id:
-            return apology("Usuario ya registrado :x", 400)
+            flash("Usuario ya registrado :x")
+            return redirect(url_for("register"))
         
         session["user_id"] = new_user_id
         flash("Ya te has registrado!! :D")
         
-        return redirect(url_for("index"))
+        return redirect(url_for("login"))
     else:
         return render_template("register.html")
     
@@ -116,18 +119,21 @@ def login():
         
         # Asegurar que el usuario haya sido enviado
         if not request.form.get("username"):
-            return apology("Debe introducir un nombre de usuario :s", 403)
+            flash("Debe introducir un nombre de usuario :s")
+            return redirect(url_for("login"))
         
         # Asegurar que la contraseña haya sido enviada
         elif not request.form.get("password"):
-            return apology("Debe introducir una contraseña :s", 403)
+            flash("Debe introducir una contraseña :s")
+            return redirect(url_for("login"))
         
         # Consultar en DB el usuario
         rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
         
         # Asegurarse que el usuario existe y la contraseña es correcta
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            return apology("Usuario y/o contraseña invalida :x", 403)
+            flash("Usuario y/o contraseña invalida :x")
+            return redirect(url_for("login"))
         
         # Recordar cual usuario inicio sesion
         session["user_id"] = rows[0]["id"]
@@ -154,11 +160,4 @@ def about():
     """Acerca de"""
     return render_template("about.html")
 
-def errorhandler(e):
-    """Handle error"""
-    return apology(e.name, e.code)
-
-# listen for errors
-for code in default_exceptions:
-    app.errorhandler(code)(errorhandler)
 
