@@ -10,13 +10,13 @@ function aumentar()
     if (elemento == img_normal)
     {
         document.querySelector('#particulas-img').src = img_rapido;
-        document.querySelector('#particulas-progress').style = "width: 100%;";
-        document.querySelector('#particulas-progress').aria-valuenow = "100";
+        //document.querySelector('#particulas-progress').style = "width: 100%;";
+        //document.querySelector('#particulas-progress').aria-valuenow = "100";
     }
     else if(elemento == img_lento)
     {
-        document.querySelector('#particulas-progress').aria-valuenow = "50";
-        document.querySelector('#particulas-progress').style = "width: 50%;";
+        //document.querySelector('#particulas-progress').aria-valuenow = "50";
+        //document.querySelector('#particulas-progress').style = "width: 50%;";
         document.querySelector('#particulas-img').src = img_normal;
     }
 }
@@ -27,13 +27,13 @@ function disminuir()
     if (elemento == img_normal)
     {
         document.querySelector('#particulas-img').src = img_lento;
-        document.querySelector('#particulas-progress').aria-valuenow = "25";
-        document.querySelector('#particulas-progress').style = "width: 25%;";
+        //document.querySelector('#particulas-progress').aria-valuenow = "25";
+        //document.querySelector('#particulas-progress').style = "width: 25%;";
     }
     else if(elemento == img_rapido)
     {
-        document.querySelector('#particulas-progress').aria-valuenow = "50";
-        document.querySelector('#particulas-progress').style = "width: 50%;";
+       // document.querySelector('#particulas-progress').aria-valuenow = "50";
+        //document.querySelector('#particulas-progress').style = "width: 50%;";
         document.querySelector('#particulas-img').src = img_normal;
     }
 }
