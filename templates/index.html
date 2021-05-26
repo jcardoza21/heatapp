@@ -6,6 +6,18 @@
 
 {% block main %}
 <script src="/static/scripts-index.js"></script>
+<style>
+    #temperature-minus{
+        float: left;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    #temperature-plus{
+        float: right;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+</style>
 
 <div class="container-fluid">
     <div class="row">
@@ -33,7 +45,7 @@
                 <button id="temperature-plus" type="button" class="btn btn-danger" onclick="aumentar()"><i class="bi bi-plus-square"></i></button>
             </div>
             <div align="center">
-                <small class="text-muted">Aumente y disminuya la temperatura del gas que se ilustra aquí haciendo clic en los botones + y -. Observe lo que sucede con la velocidad de las partículas a medida que cambia la temperatura.</small>
+                <small class="text-muted" style="margin-top: 20px;">Aumente y disminuya la temperatura del gas que se ilustra aquí haciendo clic en los botones + y -. Observe lo que sucede con la velocidad de las partículas a medida que cambia la temperatura.</small>
             </div>
         </div>
     </div>
