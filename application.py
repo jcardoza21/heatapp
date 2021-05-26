@@ -151,6 +151,7 @@ def logout():
     """Cerrar sesion"""
     # Limpiar sesion
     session.clear()
+    flash("Sesion cerrada :D")
     
     # Redireccionar al login
     return redirect("/")
