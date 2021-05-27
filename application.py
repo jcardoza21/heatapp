@@ -42,7 +42,7 @@ def conduction():
     """Calculos de Conduccion"""
     if request.method == "POST":
 
-        q=0
+        q = 0
 
         if not request.form.get("T1") or not request.form.get("T2") or not request.form.get("material") or not request.form.get("Area") or not request.form.get("deltax"):
             flash("Completar los campos")
@@ -52,6 +52,7 @@ def conduction():
         T2 = float(request.form.get("T2"))
         m = request.form.get("material")
         print(m)
+
         deltax = float(request.form.get("deltax"))
         A = float(request.form.get("Area"))
         q = q + round(fourier(m,A, T1, T2, deltax), 3)
@@ -84,12 +85,6 @@ def convection():
 
         return render_template("convection.html", q= str(q)+ ' W/m^2')
 
-
-
-
-
-
-
     return render_template("convection.html")
 
 
@@ -109,6 +104,7 @@ def radiation():
         T_2 = float(request.form.get("T_2"))
         e = float(request.form.get("emissivity"))
         q = q + round(boltzmann(e, T, T_2), 3)
+
         return render_template("radiation.html", q= str(q)+ ' W/m^2')
         print(q)
     return render_template("radiation.html")

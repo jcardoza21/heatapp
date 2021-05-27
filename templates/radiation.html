@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block main %}
+
 <form action="/radiation" method="post">
     <div class="container-fluid">
 
@@ -36,8 +37,14 @@
                             <button class="btn btn-primary" type="submit">Calcular</button>
                         </div>
 
-                        <div class="input-group mb-3">
-                            <p class="border">{{q}}</p>
+                        <div class="form-group" bis_skin_checked="1">
+
+                        <label class="form-label mt-4">Resultado:</label>
+
+                        <div id="resultado">{{q}}</div>
+
+
+
                         </div>
 
                     </fieldset>
@@ -50,11 +57,12 @@
                 <br>
                 <p style="text-align: justify;"> La <strong>radiación térmica</strong> o radiación calorífica es la radiación emitida por un cuerpo
                 debido a su temperatura. Esta radiación es radiación electromagnética que se genera por el movimiento térmico de las partículas cargadas que hay en la materia.</p>
-
                 <br><br>
 
-                <div >
-                    <iframe src="https://pbslm-contrib.s3.amazonaws.com/WGBH/conv16/conv16-int-thermalenergy/videos/movie_radiation.mp4"  title="conduction" class="img-fluid"></iframe>
+                <div>
+                    <video width="320" height="240" controls autoplay>
+                      <source src="https://pbslm-contrib.s3.amazonaws.com/WGBH/conv16/conv16-int-thermalenergy/videos/movie_radiation.mp4" type="video/mp4">
+                     </video>
                 </div>
 
             </div>
