@@ -5,42 +5,94 @@
 {% endblock %}
 
 {% block main %}
+<script src="/static/scripts_conduction.js"></script>
+
 <form action="/conduction" method="post">
     <div class="container-fluid">
 
          <div class="row align-items-center">
             <div class="col">
 
-                <h2>Casos comunes:</h2>
-                 <select class="form-select" name="case" id="">
-                     <option disabled selected value> Configuración:</option>
-                     <option value="plates">Dos placas</option>
-                     <option value="cylinder">Cilindro hueco</option>
-                     <option value="pipe_cylinder">Cilindros concentricos</option>
-                </select>
+                <h2>Transferencia por conducción en una superficie:</h2><br>
+                <div>
+                    <select class="form-select" name="case" id="">
+                         <option disabled selected value> Configuración:</option>
+                         <option value="plates" id="plates" onclick= "p()">Una placa cuadrada</option>
+                         <option value="cylinder" id="cylinder">Cilindro hueco</option>
+                    </select>
+                </div><br><br>
+
+                <div>
+                    <fieldset style= "background-color:#eeeeee;">
+                        <legend>Propiedades </legend>
+
+
+                        <label for="T2" class="form-label">Temperatura inferior:</label>
+                        <div class= "input-group mb-3">
+                            <input class="form-control" id="T2" name="T2" placeholder="Temperatura de la superficie (K)" type="number" min="0" step="0.001"/>
+                        </div>
+
+                        <label for="T1" class="form-label">Temperatura superior: </label>
+                        <div class= "input-group mb-3">
+                            <input class="form-control" id= "T1" name="T1" placeholder="Temperatura del material circundante (K)" type="number" min="0" step="0.001"/>
+                        </div>
+
+                        <label for="material" class="form-label">Material: </label>
+                        <div class= "input-group mb-3">
+                            <select class="form-select" name="material" id="">
+                                <option disabled selected value> Material</option>
+                                <option value="Blanket_Al_silica_rho_128">Blanket_Al_silica_rho_128</option>
+                                <option value="Glass fiber duct liner" >Glass fiber duct liner</option>
+                                <option value="Polystyrene" >Polystyrene</option>
+                                <option value="Metals, bronze" >Bronce</option>
+                                <option value="Metals, iron, cast" >Hierro</option>
+                                <option value="loose_fill_wood" >Maders</option>
+                                <option value="Plastics, Polyvinylchloride (PVC)">PVC</option>
+                            </select>
+                        </div>
+
+                        <label for="deltax" class="form-label">Delta X </label>
+                        <div class= "input-group mb-3">
+                            <input class="form-control" id= "deltax" name="deltax" placeholder="Delta X (m)" type="number" min="0" step="0.001"/>
+                        </div>
+
+                        <label for="Area" class="form-label">Área de transferencia</label>
+                        <div class= "input-group mb-3">
+                            <input class="form-control" id= "Area" name="Area" placeholder="Área (m^2)" type="number" min="0" step="0.001"/>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <button class="btn btn-primary" type="submit">Calcular</button>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <p class="border">{{q}}</p>
+                        </div>
+
+                    </fieldset>
+                </div>
+
+                <br>
             </div>
 
-            <div class="col" align="center">
-                <h2> Conducción</h2>
+            <div class="col">
+                <h2 style="text-align:center;"> Conducción</h2><br>
                 <p style="text-align: justify;"> La <strong>conducción</strong> es el mecanismo de transferecia de calor en escala atómica
                 a través de la materia por actividad molecular, por el choque de unas moléculas con otras,
                 donde las partáculas más enérgeticas le entregan energía a las menos energeticas, produciendo
                 un flujo de calor desde las temperaturas más altas a las más bajas.</p>
-            </div>
-        </div>
+                <br><br>
+                <div>
+                   <iframe src="https://pbslm-contrib.s3.amazonaws.com/WGBH/conv16/conv16-int-thermalenergy/videos/movie_conduction.mp4" alt="elmo modo diablo" class="img-fluid">
 
-        <div class="row">
-            <div class="col">
-                 <img src="https://media1.tenor.com/images/1d6e59a494718d541ebed21eedccd00a/tenor.gif?itemid=15910394" alt="elmo modo diablo" class="img-thumbnail">
-            </div>
+                </div>
 
-            <div class ="col">
-                <h2> 2</h2>
-                <p> amjniifkedx</p>
             </div>
         </div>
     </div>
 </form>
+
+
 
 {% endblock %}
 

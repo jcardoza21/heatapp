@@ -5,44 +5,58 @@
 {% endblock %}
 
 {% block main %}
-<form action="/convection" method="post">
+<form action="/radiation" method="post">
     <div class="container-fluid">
 
-         <div class="row align-items-center">
+         <div class="row">
             <div class="col">
+                <h3 style="text-align: center;">Flujo de calor radiante de una superficie</h3>
+                <br><br>
+                <div>
+                    <fieldset style= "background-color:#eeeeee;">
+                        <legend>Propiedades </legend>
 
-                <h2>Radiación de un cuerpo</h3>
+
+                        <label for="T" class="form-label">Temperatura de la superficie: </label>
+                        <div class= "input-group mb-3">
+                            <input class="form-control" id="T" name="T" placeholder="Temperatura de la superficie (K)" type="number" min="0" step="0.001"/>
+                        </div>
+
+                        <label for="T_2" class="form-label">Temperatura del material circundante: </label>
+                        <div class= "input-group mb-3">
+                            <input class="form-control" id= "T_2" name="T_2" placeholder="Temperatura del material circundante (K)" type="number" min="0" step="0.001"/>
+                        </div>
+
+                        <label for="emissivity" class="form-label">Emisividad del material: </label>
+                        <div class= "input-group mb-3">
+                             <input class="form-control" id="emissivity" name="emissivity" placeholder="Emisividad (Valor de 0 a 1)" type="number" min="0" max="1" step="0.001"/>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <button class="btn btn-primary" type="submit">Calcular</button>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <p class="border">{{q}}</p>
+                        </div>
+
+                    </fieldset>
+                </div>
+
             </div>
 
             <div class="col" align="center">
                 <h2> Radiación</h2>
+                <br>
                 <p style="text-align: justify;"> La <strong>radiación térmica</strong> o radiación calorífica es la radiación emitida por un cuerpo
                 debido a su temperatura. Esta radiación es radiación electromagnética que se genera por el movimiento térmico de las partículas cargadas que hay en la materia.</p>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col">
+                <br><br>
 
-                 <div class= "form-group">
-                     <input class="form-control" name="t1" placeholder="Temperatura incial" type="number"/>
+                <div >
+                    <iframe src="https://pbslm-contrib.s3.amazonaws.com/WGBH/conv16/conv16-int-thermalenergy/videos/movie_radiation.mp4"  title="conduction" class="img-fluid"></iframe>
                 </div>
-                <br>
 
-                <div class= "form-group">
-                     <input class="form-control" name="t2" placeholder="Temperatura final" type="number"/>
-                </div>
-                <br>
-
-                <div class= "form-group">
-                     <input class="form-control" name="emisivity" placeholder="Emisividad" type="number"/>
-                </div>
-                <br>
-            </div>
-
-            <div class ="col">
-                <h2> 2</h2>
-                <p> amjniifkedx</p>
             </div>
         </div>
     </div>

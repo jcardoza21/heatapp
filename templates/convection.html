@@ -8,34 +8,60 @@
 <form action="/convection" method="post">
     <div class="container-fluid">
 
-         <div class="row align-items-center">
+        <div class="row align-items-center">
             <div class="col">
 
-                <h2>Casos comunes:</h2>
-                 <select class="form-select" name="case" id="">
-                     <option disabled selected value> Configuración:</option>
-                     <optgroup label="Convección libre">
-                     <option value="v_plates">Placa vertical</option>
-                     <option value="h_plates">Placa horizontal</option>
-                     <option value="cylinder">Cilindros horizontal</option>
-                     </optgroup>
-                </select>
+                <h3 style="text-align:center;">Trasnferencia de calor entre un solido y un fluido</h3>
+                <br><br>
+
+                <div>
+                    <fieldset style="background-color:#eeeeee;">
+
+                        <legend>Propiedades</legend>
+
+                        <label for="T" class="form-label">Temperatura de la superficie</label>
+                        <div class= "input-group mb-3">
+                           <input class="form-control" id="T" name="T" placeholder="Temperatura de la superficie (K)" type="number" min="0" step="0.001"/>
+                        </div>
+
+                        <label for="Ts" class="form-label">Temperatura del fluido</label>
+                        <div class= "input-group mb-3">
+                           <input class="form-control" id="Ts" name="Ts" placeholder="Temperatura del fluido (K)" type="number" min="0" step="0.001"/>
+                        </div>
+
+                        <label for="A" class="form-label">Área de la superficie</label>
+                        <div class= "input-group mb-3">
+                           <input class="form-control" id="A" name="A" placeholder="Área de la superficie (m^2)" type="number" min="0" step="0.001"/>
+                        </div>
+
+                        <label for="h" class="form-label">Coeficiente convectivo</label>
+                        <div class= "input-group mb-3">
+                           <input class="form-control" id="h" name="h" placeholder="Coeficiente convectivo (W/m^2-°C)" type="number" min="0" step="0.001"/>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <button class="btn btn-primary" type="submit">Calcular</button>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <p class="border">{{q}}</p>
+
+                    </fieldset>
+                </div>
             </div>
 
             <div class="col" align="center">
-                <h2> Convección</h2>
-                <p style="text-align: justify;"> La <strong>convección</strong> se produce únicamente por medio de materiales fluidos. Éstos, al calentarse, aumentan de volumen y, por lo tanto, disminuyen su densidad y ascienden desplazando el fluido que se encuentra en la parte superior y que está a menor temperatura. Lo que se llama convección en sí, es el transporte de calor por medio de las corrientes ascendente y descendente del fluido.</p>
-            </div>
-        </div>
+                <h2> Convección </h2><br>
+                <p style="text-align: justify;"> La <strong>convección</strong> se produce únicamente por medio de materiales fluidos.
+                Éstos, al calentarse, aumentan de volumen y, por lo tanto, disminuyen su densidad y ascienden desplazando el fluido que se encuentra
+                en la parte superior y que está a menor temperatura.</p>
 
-        <div class="row">
-            <div class="col">
-                 <img src="https://media1.tenor.com/images/1d6e59a494718d541ebed21eedccd00a/tenor.gif?itemid=15910394" alt="elmo modo diablo" class="img-thumbnail">
-            </div>
+                <br><br>
 
-            <div class ="col">
-                <h2> 2</h2>
-                <p> amjniifkedx</p>
+                <div>
+                    <iframe src="https://pbslm-contrib.s3.amazonaws.com/WGBH/conv16/conv16-int-thermalenergy/videos/movie_convection.mp4" title="convection" class="img-fluid"></iframe>
+                </div>
+
             </div>
         </div>
     </div>

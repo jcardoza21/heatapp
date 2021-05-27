@@ -5,7 +5,7 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from helpers import apology, login_required
+from helpers import *
 
 # Inicializar aplicacion
 app = Flask(__name__)
@@ -40,15 +40,56 @@ def index():
 @login_required
 def conduction():
     """Calculos de Conduccion"""
-    #TODO
+    if request.method == "POST":
+
+        q=0
+
+        if not request.form.get("T1") or not request.form.get("T2") or not request.form.get("material") or not request.form.get("Area") or not request.form.get("deltax"):
+            flash("Completar los campos")
+            return redirect("/conduction")
+
+        T1 = float(request.form.get("T1"))
+        T2 = float(request.form.get("T2"))
+        m = request.form.get("material")
+        print(m)
+        deltax = float(request.form.get("deltax"))
+        A = float(request.form.get("Area"))
+        q = q + round(fourier(m,A, T1, T2, deltax), 3)
+
+        return render_template("conduction.html", q= str(q)+ ' W/m^2')
+
+
     return render_template("conduction.html")
+
 
 
 @app.route("/convection", methods=["GET", "POST"])
 @login_required
 def convection():
     """Calculos de Conveccion"""
-    #TODO
+
+    if request.method == "POST":
+
+        q=0
+
+        if not request.form.get("T") or not request.form.get("Ts") or not request.form.get("A") or not request.form.get("h"):
+            flash("Completar los campos")
+            return redirect("/convection")
+
+        T = float(request.form.get("T"))
+        Ts = float(request.form.get("Ts"))
+        h = float(request.form.get("h"))
+        A = float(request.form.get("A"))
+        q = q + round(newton(h, A, T, Ts), 3)
+
+        return render_template("convection.html", q= str(q)+ ' W/m^2')
+
+
+
+
+
+
+
     return render_template("convection.html")
 
 
@@ -56,22 +97,20 @@ def convection():
 @login_required
 def radiation():
     """Calculos de Radiacion"""
-     if request.method == "POST":
+    if request.method == "POST":
 
-        t1=request.form.get("t1")
-        t2=request.form.get("t2")
-        emisivity=request.form.get("emisivity")
+        q=0
 
+        if not request.form.get("T") or not request.form.get("T_2") or not request.form.get("emissivity"):
+            flash("Completar los campos")
+            return redirect("/radiation")
 
-
-
-
-
-
-
-
-
-
+        T = float(request.form.get("T"))
+        T_2 = float(request.form.get("T_2"))
+        e = float(request.form.get("emissivity"))
+        q = q + round(boltzmann(e, T, T_2), 3)
+        return render_template("radiation.html", q= str(q)+ ' W/m^2')
+        print(q)
     return render_template("radiation.html")
 
 
