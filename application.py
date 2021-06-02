@@ -1,5 +1,5 @@
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session, url_for
+from flask import Flask, flash, redirect, render_template, request, session, url_for, jsonify
 from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions
@@ -17,7 +17,7 @@ def after_request(response):
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
     return response
-    
+
 # Configurar sesion para utilizar el sistema de archivos en vez de cookies
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
@@ -39,7 +39,25 @@ def index():
 @login_required
 def conduction():
     """Calculos de Conduccion"""
-    #TODO
+    if request.method == "POST":
+
+        q = 0
+
+        if not request.form.get("T1") or not request.form.get("T2") or not request.form.get("material") or not request.form.get("Area") or not request.form.get("deltax"):
+            flash("Completar los campos")
+            return redirect("/conduction")
+
+        T1 = float(request.form.get("T1"))
+        T2 = float(request.form.get("T2"))
+        m = request.form.get("material")
+
+        deltax = float(request.form.get("deltax"))
+        A = float(request.form.get("Area"))
+        q = q + round(fourier(m,A, T1, T2, deltax), 3)
+
+        return jsonify({"q":q})
+        #return render_template("conduction.html", q= str(q)+ ' W')
+
     return render_template("conduction.html")
 
 
@@ -47,7 +65,22 @@ def conduction():
 @login_required
 def convection():
     """Calculos de Conveccion"""
-    #TODO
+    if request.method == "POST":
+        
+        q = 0
+        
+        if not request.form.get("T") or not request.form.get("Ts") or not request.form.get("A") or not request.form.get("h"):
+            flash("Completar los campos")
+            return redirect("/convection")
+
+        T = float(request.form.get("T"))
+        Ts = float(request.form.get("Ts"))
+        h = float(request.form.get("h"))
+        A = float(request.form.get("A"))
+        q = q + round(newton(h, A, T, Ts), 3)
+
+        return jsonify({"q":q})
+        #return render_template("convection.html", q= str(q)+ ' W/m^2')
     return render_template("convection.html")
 
 
@@ -55,7 +88,21 @@ def convection():
 @login_required
 def radiation():
     """Calculos de Radiacion"""
-    #TODO
+    if request.method == "POST":
+
+        q = 0
+
+        if not request.form.get("T") or not request.form.get("T_2") or not request.form.get("emissivity"):
+            flash("Completar los campos")
+            return redirect("/radiation")
+
+        T = float(request.form.get("T"))
+        T_2 = float(request.form.get("T_2"))
+        e = float(request.form.get("emissivity"))
+        q = q + round(boltzmann(e, T, T_2), 3)
+
+        return render_template("radiation.html", q= str(q)+ ' W/m^2')
+
     return render_template("radiation.html")
 
 
@@ -63,86 +110,85 @@ def radiation():
 @login_required
 def examples():
     """Ejemplos de Transferencia de Calor"""
-    #TODO
     return render_template("examples.html")
-    
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Registrar al usuario"""
-    
+
     # Metodo POST
     if request.method == "POST":
-        
+
         # Validar nombre de usario
         if not request.form.get("username"):
             flash("Debe introducir un nombre de usuario :s")
             return redirect(url_for("register"))
-        
-        # Validar contraseña 
+
+        # Validar contraseña
         elif not request.form.get("password"):
             flash("Debe introducir una contraseña :s")
             return redirect(url_for("register"))
-        
+
         # Validar que contraseña y confirmacion coincidan
         elif not request.form.get("password") == request.form.get("confirmation"):
             flash("Contraseñas no coinciden :c")
             return redirect(url_for("register"))
-        
+
         # Generar hash para la contraseña
         hash = generate_password_hash(request.form.get("password"))
-        
+
         # Almacenar usuario en la DB
         new_user_id = db.execute("INSERT INTO users (username, hash) VALUES (:username, :hash)",username = request.form.get("username"), hash=hash)
-        
+
         # Si ya existe el usuario:
         if not new_user_id:
             flash("Usuario ya registrado :x")
             return redirect(url_for("register"))
-        
+
         session["user_id"] = new_user_id
         flash("Ya te has registrado!! :D")
-        
+
         return redirect(url_for("login"))
     else:
         return render_template("register.html")
-    
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Iniciar sesion"""
-    
+
     # Limpiar sesiones anteriores
     #session.clear()
-    
+
     # Metodo POST
     if request.method == "POST":
-        
+
         # Asegurar que el usuario haya sido enviado
         if not request.form.get("username"):
             flash("Debe introducir un nombre de usuario :s")
             return redirect(url_for("login"))
-        
+
         # Asegurar que la contraseña haya sido enviada
         elif not request.form.get("password"):
             flash("Debe introducir una contraseña :s")
             return redirect(url_for("login"))
-        
+
         # Consultar en DB el usuario
         rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
-        
+
         # Asegurarse que el usuario existe y la contraseña es correcta
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
             flash("Usuario y/o contraseña invalida :x")
             return redirect(url_for("login"))
-        
+
         # Recordar cual usuario inicio sesion
         session["user_id"] = rows[0]["id"]
-        
+
         # Redireccionar a la pagina de inicio
         return redirect("/")
-    
+
     # Metodo GET
-    else: 
+    else:
         return render_template("login.html")
 
 
@@ -152,10 +198,10 @@ def logout():
     # Limpiar sesion
     session.clear()
     flash("Sesion cerrada :D")
-    
+
     # Redireccionar al login
     return redirect("/")
-    
+
 @app.route("/about")
 def about():
     """Acerca de"""

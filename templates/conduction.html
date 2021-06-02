@@ -5,14 +5,179 @@
 {% endblock %}
 
 {% block main %}
+
+<style>
+    hr{
+    border-top: 3px solid blue;
+    border-radius: 1px;
+    }
+
+    #resultado{
+  color: #000;
+  padding-left:10px;
+  text-align: center;
+  border-style: groove;
+  background-color: white;
+  border-radius: 5px;;
+    }
+
+    #form-background{
+  display: block;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding-top: 0.35em;
+  padding-bottom: 0.625em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  border: 2px groove;
+  border-radius: 5px;
+  background-color:#eeeeee;
+    }
+
+    .Cuadrito{
+        font-size: 25px;
+        color: #000;
+        padding-left:10px;
+        text-align: center;
+        border-style: groove;
+        background-color: white;
+        border-radius: 5px;
+    }
+</style>
+
 <div class="container-fluid">
     <div class="row">
+        <h1><i class="bi bi-patch-check"></i> Conduccion</h1>
+    </div>
+    <hr>
+    <div class="row align-items-center">
+        <div class="col align-self-center">
+        <p>
+            La <strong>conducción de calor</strong> o transferencia de energía en forma de calor por conducción es un proceso de transmisión de calor basado en el contacto directo entre los cuerpos,
+            sin intercambio de materia, porque el calor fluye desde un cuerpo de mayor temperatura a otro de menor temperatura que está en contacto con el primero. La propiedad física de los materiales
+            que determina su capacidad para conducir el calor es la <em>conductividad térmica</em>. La propiedad inversa de la conductividad térmica es la <em>resistividad térmica</em>,
+            que es la capacidad de los materiales para oponerse al paso del calor.
+        </p>
+        </div>
+        <div class="col align-self-center" align="center">
+            <video width="70%" height="70%" controls autoplay muted>
+                <source src="https://pbslm-contrib.s3.amazonaws.com/WGBH/conv16/conv16-int-thermalenergy/videos/movie_conduction.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    <br>
+    <div class="row align-items-center">
+        <h2><i class="bi bi-search"></i> Ley de Fourier</h2>
+        <hr>
+        <div class="col" align="center">
+            <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/5af3fd4ca3a8d8025b3dc5886873b67cbb7ecd3b" alt="Ecuacion de Fourier" width="50%" height="25%">
+            <br>
+            <br>
+            <p><strong>Donde:</strong></p>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                      <th scope="col">Simbolo</th>
+                      <th scope="col">Nombre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-primary">
+                        <td align="center"><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/991041fb1400f7fb1d66222de8f9590977df423d" class="img-fluid"></td>
+                        <td>Calor transmitido por unidad de tiempo</td>
+                    </tr>
+                    <tr class="table-secondary">
+                        <td align="center"><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/c3c9a2c7b599b37105512c5d570edc034056dd40" class="img-fluid"></td>
+                        <td>Conductividad Termica</td>
+                    </tr>
+                    <tr class="table-primary">
+                        <td align="center"><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/7daff47fa58cdfd29dc333def748ff5fa4c923e3" class="img-fluid"></td>
+                        <td>Area de la superficie de contacto</td>
+                    </tr>
+                    <tr class="table-secondary">
+                        <td align="center"><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/87f9e315fd7e2ba406057a97300593c4802b53e4" class="img-fluid"></td>
+                        <td>Espesor del Material</td>
+                    </tr>
+                    <tr class="table-primary">
+                        <td align="center"><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/b98dc261ef7534ff7d9a9026d937254c0c31db92" class="img-fluid"></td>
+                        <td>Diferencia de temperatura entre el foco caliente y el foco frio</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col" align="right">
+            <p>
+                La conducción térmica está determinada por la ley de Fourier, que establece que el flujo de transferencia de calor por conducción en un medio isótropo es proporcional y de sentido contrario al gradiente de temperatura en esa dirección.
+                Para el caso simplificado de flujo de calor estacionario en una sola dirección,
+                el calor transmitido es proporcional al área perpendicular al flujo de calor,
+                a la conductividad del material y a la diferencia de temperatura,
+                y es inversamente proporcional al espesor:
+            </p>
+            <div  align="center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Linear_Heat_flow.svg/220px-Linear_Heat_flow.svg.png" class="img-fluid">
+            </div>
+        </div>
+    </div>
+    <br>
+    <h2><i class="bi bi-calculator"></i> Calculos</h2>
+    <hr>
+    <div class="row align-items-center" >
+        <div class="col align-self-center" align="center">
+            <img src="data:image/png;base64,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" width="50%" height="50%">
+        </div>
         <div class="col">
-            
+            <fieldset id="form-background">
+                <form  id = "conduction" method="post">
+                 <legend>DATOS</legend>
+                <label for="T2" class="form-label">Temperatura del foco frio:</label>
+                <div class= "input-group mb-3">
+                    <input class="form-control" id="T2" name="T2" placeholder="Unidades: Kelvin" type="number" min="0" step="0.001"/>
+                </div>
+
+                <label for="T1" class="form-label">Temperatura del foco caliente: </label>
+                <div class= "input-group mb-3">
+                    <input class="form-control" id= "T1" name="T1" placeholder="Unidades: Kelvin" type="number" min="0" step="0.001"/>
+                </div>
+
+                <label for="material" class="form-label">Material: </label>
+                <div class= "input-group mb-3">
+                    <select class="form-select" name="material" id="material-selector">
+                        <option disabled selected value style="background-color: light-grey;">Selecciona el material:</option>
+                        <option value="Metals, bronze" >Bronce</option>
+                        <option value="Metals, iron, cast" >Hierro</option>
+                        <option value="Metals, zinc" >Zinc</option>
+                        <option value="Concrete, high density">Concreto de alta densidad</option>
+                        <option value="Gypsum, plasterboard">Gypsum</option>
+                        <option value="Polystyrene" >Poliestireno</option>
+                        <option value="loose_fill_wood" >Madera</option>
+                        <option value="Plastics, Polyvinylchloride (PVC)">PVC</option>
+                    </select>
+                    </div>
+
+                    <label for="deltax" class="form-label">Espesor del material: </label>
+                    <div class= "input-group mb-3">
+                        <input class="form-control" id= "deltax" name="deltax" placeholder="Unidades: Metros" type="number" min="0" step="0.001"/>
+                    </div>
+
+                    <label for="Area" class="form-label">Área Transversal: </label>
+                    <div class= "input-group mb-3">
+                        <input class="form-control" id= "Area" name="Area" placeholder="Unidades: Metros cuadrados" type="number" min="0" step="0.001"/>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <button class="btn btn-primary" type="submit">Calcular</button>
+                    </div>
+                    </fieldset>
+
+                    <div id="result-div" class="form-group" bis_skin_checked="1">
+                    </div>
+                </form>
         </div>
     </div>
 </div>
 
+
+<script src="./static/scripts-conduction.js"></script>
 {% endblock %}
 
 
