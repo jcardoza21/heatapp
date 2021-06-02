@@ -100,8 +100,9 @@ def radiation():
         T_2 = float(request.form.get("T_2"))
         e = float(request.form.get("emissivity"))
         q = q + round(boltzmann(e, T, T_2), 3)
-
-        return render_template("radiation.html", q= str(q)+ ' W/m^2')
+        
+        return jsonify({"q":q})
+        #return render_template("radiation.html", q= str(q)+ ' W/m^2')
 
     return render_template("radiation.html")
 

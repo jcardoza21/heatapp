@@ -1,16 +1,15 @@
-// Javascript para convection.html
-document.querySelector("#convection").onsubmit=()=>{
+// Javascript para radiation.html
+document.querySelector("#radiation").onsubmit=()=>{
 
         let data = new FormData();
         
         let t = document.querySelector("#T");
         data.append("T",t.value);
-        data.append("Ts",document.querySelector("#Ts").value);
-        data.append("A",document.querySelector("#A").value);
-        data.append("h",document.querySelector("#h").value);
+        data.append("T_2",document.querySelector("#T_2").value);
+        data.append("emissivity",document.querySelector("#emissivity").value);
 
         let resp = new XMLHttpRequest();
-        resp.open("POST","/convection");
+        resp.open("POST","/radiation");
         resp.responseType = "json"
         resp.send(data);
 
@@ -21,7 +20,7 @@ document.querySelector("#convection").onsubmit=()=>{
                         console.log(result);
                         
                         let cuadrito = document.querySelector("#result-div");
-                        cuadrito.textContent = 'Flujo de Calor: '+ result.q + ' W';
+                        cuadrito.textContent = 'Densidad de Flujo de Calor: '+ result.q + ' W/m^2';
                         cuadrito.setAttribute("class","Cuadrito");
                 }
         };

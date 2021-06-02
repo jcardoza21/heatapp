@@ -1,73 +1,164 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Radiacion
+    Conveccion
 {% endblock %}
 
 {% block main %}
-<form action="/radiation" method="post">
-    <div class="container-fluid">
 
-         <div class="row">
-            <div class="col">
-                <h3 style="text-align: center;">Flujo de calor radiante de una superficie</h3>
-                <br><br>
-                <div>
-                    <fieldset style= "background-color:#eeeeee;">
-                        <legend>Propiedades </legend>
+<style>
+    hr{
+    border-top: 3px solid blue;
+    border-radius: 1px;
+    }
 
+    #resultado{
+  color: #000;
+  padding-left:10px;
+  text-align: center;
+  border-style: groove;
+  background-color: white;
+  border-radius: 5px;;
+    }
 
-                        <label for="T" class="form-label">Temperatura de la superficie: </label>
-                        <div class= "input-group mb-3">
-                            <input class="form-control" id="T" name="T" placeholder="Temperatura de la superficie (K)" type="number" min="0" step="0.001"/>
-                        </div>
+    #form-background{
+  display: block;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding-top: 0.35em;
+  padding-bottom: 0.625em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  border: 2px groove;
+  border-radius: 5px;
+  background-color:#eeeeee;
+    }
 
-                        <label for="T_2" class="form-label">Temperatura del material circundante: </label>
-                        <div class= "input-group mb-3">
-                            <input class="form-control" id= "T_2" name="T_2" placeholder="Temperatura del material circundante (K)" type="number" min="0" step="0.001"/>
-                        </div>
+    .Cuadrito{
+        font-size: 20px;
+        color: #000;
+        padding-left:10px;
+        text-align: center;
+        border-style: groove;
+        background-color: white;
+        border-radius: 5px;
+    }
+</style>
 
-                        <label for="emissivity" class="form-label">Emisividad del material: </label>
-                        <div class= "input-group mb-3">
-                             <input class="form-control" id="emissivity" name="emissivity" placeholder="Emisividad (Valor de 0 a 1)" type="number" min="0" max="1" step="0.001"/>
-                        </div>
+<div class="container-fluid">
+    <div class="row">
+        <h1><i class="bi bi-patch-check"></i> Radiacion</h1>
+    </div>
+    <hr>
+    <div class="row align-items-center">
+        <div class="col align-self-center">
+        <p>
+           Se denomina <strong>radiación térmica</strong> o <strong>radiación calorífica</strong> y es la radiación emitida por un cuerpo debido a su temperatura. 
+           Esta radiación es radiación electromagnética que se genera por el movimiento térmico de las partículas cargadas que hay en la materia. 
+           Todos los cuerpos (salvo uno cuya temperatura fuera de cero absoluto) emiten debido a este efecto radiación electromagnética, siendo su intensidad dependiente de la temperatura y de la longitud de onda considerada.
+           La radiación térmica es uno de los mecanismos fundamentales de la transferencia térmica.
 
-                        <div class="input-group mb-3">
-                            <button class="btn btn-primary" type="submit">Calcular</button>
-                        </div>
-
-                        <div class="form-group" bis_skin_checked="1">
-
-                        <label class="form-label mt-4">Resultado:</label>
-
-                        <div id="resultado">{{q}}</div>
-
-
-
-                        </div>
-
-                    </fieldset>
-                </div>
-
-            </div>
-
-            <div class="col" align="center">
-                <h2> Radiación</h2>
-                <br>
-                <p style="text-align: justify;"> La <strong>radiación térmica</strong> o radiación calorífica es la radiación emitida por un cuerpo
-                debido a su temperatura. Esta radiación es radiación electromagnética que se genera por el movimiento térmico de las partículas cargadas que hay en la materia.</p>
-                <br><br>
-
-                <div>
-                    <video width="320" height="240" controls autoplay>
-                      <source src="https://pbslm-contrib.s3.amazonaws.com/WGBH/conv16/conv16-int-thermalenergy/videos/movie_radiation.mp4" type="video/mp4">
-                     </video>
-                </div>
-
+        </p>
+        </div>
+        <div class="col align-self-center" align="center">
+            <video width="70%" height="70%" controls autoplay muted>
+                <source src="https://pbslm-contrib.s3.amazonaws.com/WGBH/conv16/conv16-int-thermalenergy/videos/movie_radiation.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    <br>
+    <div class="row align-items-center">
+        <h2><i class="bi bi-search"></i> Ley de Stefan-Boltzmann</h2>
+        <hr>
+        <div class="col" align="center">
+            <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/c2b52096c17eb2d34929d9cd4ada17e648a0dc9e" alt="Ecuacion de Stefan-Boltzmann" width="50%" height="25%">
+            <br>
+            <br>
+            <p><strong>Donde:</strong></p>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                      <th scope="col">Simbolo</th>
+                      <th scope="col">Nombre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-primary">
+                        <td align="center"><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/4232c9de2ee3eec0a9c0a19b15ab92daa6223f9b" class="img-fluid"></td>
+                        <td>Potencia Emisiva Hemisferica total</td>
+                    </tr>
+                    <tr class="table-secondary">
+                        <td align="center"><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/2db970f307b2a8900a1e3644dcec78d60e3a8a9b" class="img-fluid"></td>
+                        <td>Temperatura efectiva (temperatura absoluta de la superficie)</td>
+                    </tr>
+                    <tr class="table-primary">
+                        <td align="center"><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/a30c89172e5b88edbd45d3e2772c7f5e562e5173" class="img-fluid"></td>
+                        <td>Emisividad</td>
+                    </tr>
+                    <tr class="table-secondary">
+                        <td align="center"><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/59f59b7c3e6fdb1d0365a494b81fb9a696138c36" class="img-fluid"></td>
+                        <td>Constante de Stefan-Boltzmann</td>
+                    </tr>
+                    <tr class="table-primary">
+                        <td align="center"><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/5cc9b664ef7e1dca131e7f345b4321bd3a07a7d8" class="img-fluid"></td>
+                        <td>Area del cuerpo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col" align="right">
+            <p>
+                La <strong>ley de Stefan-Boltzmann</strong> establece que un cuerpo negro emite radiación térmica con una potencia emisiva hemisférica total (W / m2) proporcional a la cuarta potencia de su temperatura.
+                La ley es muy precisa solo para objetos negros ideales, los radiadores perfectos, llamados <em>cuerpos negros</em>; funciona como una buena aproximación para la mayoría de los cuerpos grises.
+                Para el cálculo de intercambios radiactivos de dos cuerpos negros, hay que afectar a la expresión anterior por el llamado factor de forma F, el cual indica que fracción de la energía total emitida por una superficie es interceptada (absorbida, reflejada o transmitida) por otra superficie, es un concepto puramente geométrico.
+  
+            </p>
+            <div align="center">
+                <img src="https://www.researchgate.net/profile/Pedro-Carmona-4/publication/273755565/figure/fig10/AS:647514508259354@1531390897378/Figura-33-Efecto-de-una-fuente-de-radiacion-termica-sobre-un-cuerpo-Adaptado-de-ITC.png" width="70%" height="70%">
             </div>
         </div>
     </div>
-</form>
+    <br>
+    <h2><i class="bi bi-calculator"></i> Calculos</h2>
+    <hr>
+    <div class="row align-items-center" >
+        <div class="col align-self-center" align="center">
+            <img src="https://slidetodoc.com/presentation_image_h/ece6be90baca4eaecf6b16b69dae37d5/image-13.jpg" width="50%" height="50%">
+        </div>
+        <div class="col">
+            <fieldset id="form-background">
+                <form  id="radiation" method="post">
+                <legend>DATOS</legend>
+                <label for="T" class="form-label">Temperatura de la superficie: </label>
+                <div class= "input-group mb-3">
+                    <input class="form-control" id="T" name="T" placeholder="Unidades: Kelvin" type="number" min="0" step="0.001"/>
+                </div>
+
+                <label for="T_2" class="form-label">Temperatura del material circundante: </label>
+                <div class= "input-group mb-3">
+                    <input class="form-control" id= "T_2" name="T_2" placeholder="Unidades: Kelvin" type="number" min="0" step="0.001"/>
+                </div>
+                
+                <label for="emissivity" class="form-label">Emisividad del material: </label>
+                <div class= "input-group mb-3">
+                    <input class="form-control" id= "emissivity" name="emissivity" placeholder="Seleccionar un valor de 0 a 1" type="number" min="0" max="1" step="0.001"/>
+                </div>
+
+                <div class="input-group mb-3">
+                    <button class="btn btn-primary" type="submit">Calcular</button>
+                </div>
+                </fieldset>
+
+                <div id="result-div" class="form-group" bis_skin_checked="1">
+                </div>
+                
+                </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="./static/scripts-radiation.js"></script>
 {% endblock %}
 
 

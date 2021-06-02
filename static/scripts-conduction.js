@@ -24,7 +24,7 @@ document.querySelector("#conduction").onsubmit=()=>{
                         console.log(result);
 
                         let cuadrito = document.querySelector("#result-div");
-                        cuadrito.textContent = 'Resultado: '+ result.q + ' W';
+                        cuadrito.textContent = 'Flujo de Calor: '+ result.q + ' W';
                         cuadrito.setAttribute("class","Cuadrito");
                 }
         };
