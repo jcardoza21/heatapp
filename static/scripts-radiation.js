@@ -1,13 +1,17 @@
 // Javascript para radiation.html
-document.querySelector("#radiation").onsubmit=()=>{
 
+document.querySelector("#radiation").onsubmit=()=>{
+        
+        // Crear formulario en data
         let data = new FormData();
         
+        // Parametros
         let t = document.querySelector("#T");
         data.append("T",t.value);
         data.append("T_2",document.querySelector("#T_2").value);
         data.append("emissivity",document.querySelector("#emissivity").value);
-
+        
+        // Respuesta
         let resp = new XMLHttpRequest();
         resp.open("POST","/radiation");
         resp.responseType = "json"
@@ -24,6 +28,7 @@ document.querySelector("#radiation").onsubmit=()=>{
                         cuadrito.setAttribute("class","Cuadrito");
                 }
         };
-        
+
+    // No recargar
     return false;
 };

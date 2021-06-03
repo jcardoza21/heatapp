@@ -1,14 +1,18 @@
 // Javascript para convection.html
-document.querySelector("#convection").onsubmit=()=>{
 
+document.querySelector("#convection").onsubmit=()=>{
+        
+        // Crear formulario en data
         let data = new FormData();
         
+        // Parametros
         let t = document.querySelector("#T");
         data.append("T",t.value);
         data.append("Ts",document.querySelector("#Ts").value);
         data.append("A",document.querySelector("#A").value);
         data.append("h",document.querySelector("#h").value);
-
+        
+        // Respuesta
         let resp = new XMLHttpRequest();
         resp.open("POST","/convection");
         resp.responseType = "json"
@@ -26,5 +30,6 @@ document.querySelector("#convection").onsubmit=()=>{
                 }
         };
         
+    // No recargar
     return false;
 };

@@ -137,15 +137,19 @@ def register():
 
         # Generar hash para la contraseña
         hash = generate_password_hash(request.form.get("password"))
+        
+        # Verificar usuario repetido
+        u=db.execute("SELECT * FROM users WHERE username =:username", username=request.form.get("username"))
 
-        # Almacenar usuario en la DB
-        new_user_id = db.execute("INSERT INTO users (username, hash) VALUES (:username, :hash)",username = request.form.get("username"), hash=hash)
-
-        # Si ya existe el usuario:
-        if not new_user_id:
-            flash("Usuario ya registrado :x")
-            return redirect(url_for("register"))
-
+        if not u:
+           # Almacenar usuario en la DB
+           new_user_id = db.execute("INSERT INTO users (username, hash) VALUES (:username, :hash)",username = request.form.get("username"), hash=hash)
+        
+        else:
+           flash("Usuario no disponible :/")
+           return redirect(url_for("register"))
+ 
+        
         session["user_id"] = new_user_id
         flash("Ya te has registrado!! :D")
 
