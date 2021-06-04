@@ -5,7 +5,7 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from helpers import login_required, fourier, newton, boltzmann
+from helpers import *
 
 # Inicializar aplicacion
 app = Flask(__name__)
@@ -66,9 +66,9 @@ def conduction():
 def convection():
     """Calculos de Conveccion"""
     if request.method == "POST":
-        
+
         q = 0
-        
+
         if not request.form.get("T") or not request.form.get("Ts") or not request.form.get("A") or not request.form.get("h"):
             flash("Completar los campos")
             return redirect("/convection")
@@ -100,7 +100,7 @@ def radiation():
         T_2 = float(request.form.get("T_2"))
         e = float(request.form.get("emissivity"))
         q = q + round(boltzmann(e, T, T_2), 3)
-        
+
         return jsonify({"q":q})
         #return render_template("radiation.html", q= str(q)+ ' W/m^2')
 
@@ -112,6 +112,40 @@ def radiation():
 def examples():
     """Ejemplos de Transferencia de Calor"""
     return render_template("examples.html")
+
+@app.route("/dimensionless", methods=["GET", "POST"])
+@login_required
+def dimensionless():
+    """Numeros adimensionales en Transferencia de Calor"""
+
+    if request.method == "POST":
+
+        h = float(request.form.get("h"))
+        l = float(request.form.get("l"))
+        k = float(request.form.get("k"))
+        Bi = 0 + round(calculate_biot(h,l,k), 3)
+
+        if h and l and k and Bi:
+            return jsonify({"Bi":Bi})
+
+        # alpha = float(request.form.get("alpha"))
+        # t = float(request.form.get("t"))
+        # l = float(request.form.get("l"))
+        # Fo = 0 + round(calculate_fourier(alpha,t,l), 3)
+
+        # if alpha and t and l and Fo:
+        #     return jsonify({"Fo":Fo})
+
+        # ro = float(request.form.get("ro"))
+        # u = float(request.form.get("u"))
+        # l = float(request.form.get("l"))
+        # mi = float(request.form.get("mi"))
+        # Re = 0 + round(calculate_reynolds(ro,u,l,mi), 3)
+
+        # if ro and u and l and mi and Re:
+        #     return jsonify({"Re":Re})
+
+    return render_template("dimensionless.html")
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -137,19 +171,19 @@ def register():
 
         # Generar hash para la contraseña
         hash = generate_password_hash(request.form.get("password"))
-        
+
         # Verificar usuario repetido
         u=db.execute("SELECT * FROM users WHERE username =:username", username=request.form.get("username"))
 
         if not u:
            # Almacenar usuario en la DB
            new_user_id = db.execute("INSERT INTO users (username, hash) VALUES (:username, :hash)",username = request.form.get("username"), hash=hash)
-        
+
         else:
            flash("Usuario no disponible :/")
            return redirect(url_for("register"))
- 
-        
+
+
         session["user_id"] = new_user_id
         flash("Ya te has registrado!! :D")
 

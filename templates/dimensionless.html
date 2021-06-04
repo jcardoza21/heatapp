@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Adimensionales
+{% endblock %}
+
+{% block main %}
+
+<style>
+    hr{
+    border-top: 3px solid blue;
+    border-radius: 1px;
+    }
+
+    #resultado{
+  color: #000;
+  padding-left:10px;
+  text-align: center;
+  border-style: groove;
+  background-color: white;
+  border-radius: 5px;;
+    }
+
+    #form-background{
+  display: block;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding-top: 0.35em;
+  padding-bottom: 0.625em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  border: 2px groove;
+  border-radius: 5px;
+  background-color:#eeeeee;
+    }
+
+    .Cuadrito{
+        font-size: 25px;
+        color: #000;
+        padding-left:10px;
+        text-align: center;
+        border-style: groove;
+        background-color: white;
+        border-radius: 5px;
+    }
+    footer{
+    bottom: 0;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <h1><i class="bi bi-patch-check"></i> Numeros Adimensionales <small class="text-muted">en la Transferencia de Calor</small></h1>
+    </div>
+    <hr>
+    <div class="row align-items-center" align="center">
+        <p>
+            Un número adimensional es un número que no tiene unidades físicas que lo definan y por lo tanto es un número puro. 
+            Los números adimensionales se definen como productos o cocientes de cantidades que sí tienen unidades de tal forma que todas estas se simplifican. 
+            Dependiendo de su valor estos números tienen un significado físico que caracteriza unas determinadas propiedades para algunos sistemas.
+            En la transferencia de calor son de gran utilidad ya que describen un sinnumero de fenomenos fisicos. 
+            A continuacion se presentan algunos de los mas comunes:
+        </p>
+        <br>
+    <div align="center">
+    <button type="button" class="btn btn-primary btn-lg" onclick="biot()">Biot</button>
+    <button type="button" class="btn btn-primary btn-lg" onclick="fourier()">Fourier</button>
+    <button type="button" class="btn btn-primary btn-lg" onclick="reynolds()">Reynolds</button>
+    <button type="button" class="btn btn-primary btn-lg" onclick="grashof()">Grashof</button>
+    <button type="button" class="btn btn-primary btn-lg" onclick="nusselt()">Nusselt</button>
+    <button type="button" class="btn btn-primary btn-lg" onclick="peclet()">Peclet</button>
+    <button type="button" class="btn btn-primary btn-lg" onclick="prandtl()">Prandtl</button>
+    <button type="button" class="btn btn-primary btn-lg" onclick="rayleigh()">Rayleigh</button>
+    <button type="button" class="btn btn-primary btn-lg" onclick="stokes()">Stokes</button>
+    </div>
+    
+    <div id="form-content">
+    <div class="row align-items center">
+        <img align="center" src="https://heatexchangersindia.com/images/shellandtube.gif" alt="intercambiador" class="img-fluid">
+        <br>
+        <small style="font-size: 1em;" align="center" class="text-muted">El intercambiador de calor de tubo y coraza es un equipo de transferencia de calor que utiliza los mecanismos combinados de conduccion y conveccion para un intercambio termico efectivo. El numero de Reynolds es muy util en los calculos involucrados con este equipo</small>
+    </div>
+    </div>
+    
+    
+</div>
+{% endblock %}
