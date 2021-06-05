@@ -113,37 +113,108 @@ def examples():
     """Ejemplos de Transferencia de Calor"""
     return render_template("examples.html")
 
+
+
 @app.route("/dimensionless", methods=["GET", "POST"])
 @login_required
 def dimensionless():
-    """Numeros adimensionales en Transferencia de Calor"""
+
 
     if request.method == "POST":
 
-        h = float(request.form.get("h"))
-        l = float(request.form.get("l"))
-        k = float(request.form.get("k"))
-        Bi = 0 + round(calculate_biot(h,l,k), 3)
+        if request.form.get("h") and request.form.get("l") and request.form.get("k"):
 
-        if h and l and k and Bi:
+
+            h = float(request.form.get("h"))
+            l = float(request.form.get("l"))
+            k = float(request.form.get("k"))
+            Bi = round(calculate_biot(h,l,k), 3)
+
+            #if h and l and k and Bi:
             return jsonify({"Bi":Bi})
 
-        # alpha = float(request.form.get("alpha"))
-        # t = float(request.form.get("t"))
-        # l = float(request.form.get("l"))
-        # Fo = 0 + round(calculate_fourier(alpha,t,l), 3)
+        if request.form.get("alpha") and request.form.get("t") and request.form.get("l"):
 
-        # if alpha and t and l and Fo:
-        #     return jsonify({"Fo":Fo})
+            alpha = float(request.form.get("alpha"))
+            t = float(request.form.get("t"))
+            l = float(request.form.get("l"))
+            Fo = round(calculate_fourier(alpha,t,l), 3)
 
-        # ro = float(request.form.get("ro"))
-        # u = float(request.form.get("u"))
-        # l = float(request.form.get("l"))
-        # mi = float(request.form.get("mi"))
-        # Re = 0 + round(calculate_reynolds(ro,u,l,mi), 3)
+        #if alpha and t and l and Fo:
+            return jsonify({"Fo":Fo})
 
-        # if ro and u and l and mi and Re:
-        #     return jsonify({"Re":Re})
+        if request.form.get("rho") and request.form.get("velocidad") and request.form.get("diametro") and  request.form.get("viscosidad"):
+
+            ro = float(request.form.get("rho"))
+            u = float(request.form.get("velocidad"))
+            l = float(request.form.get("diametro"))
+            mi = float(request.form.get("viscosidad"))
+            Re = round(calculate_reynolds(ro,u,l,mi), 3)
+
+        #if ro and u and l and mi and Re:
+            return jsonify({"Re":Re})
+
+        if request.form.get("betha") and request.form.get("Ts") and request.form.get("T") and  request.form.get("m") and request.form.get("v"):
+            beta=float(request.form.get("betha"))
+            Ts=float(request.form.get("Ts"))
+            g = 9.81
+            Tinf=float(request.form.get("T"))
+            m = float(request.form.get("m"))
+            ni=float(request.form.get("v"))
+            rho=float(request.form.get("rho"))
+            Gr= round(calculate_grashof(g, beta,Ts,Tinf, m ,ni, rho),3)
+
+            return jsonify({"Gr":Gr})
+
+        if request.form.get("h") and request.form.get("lc") and request.form.get("k"):
+            h = float(request.form.get("h"))
+            l = float(request.form.get("lc"))
+            k = float(request.form.get("k"))
+            Nus = round(calculate_nusselt(h,l,k),3)
+
+            return jsonify({"Nus":Nus})
+
+        if request.form.get("alpa") and request.form.get("u") and request.form.get("L"):
+            alpha = float(request.form.get("alpa"))
+            l= float(request.form.get("L"))
+            u = float(request.form.get("u"))
+            Pe = round(calculate_peclet(l,u,alpha),3)
+
+            return jsonify({"Pe":Pe})
+
+        if request.form.get("dt") and request.form.get("vc"):
+            alpha = float(request.form.get("dt"))
+            ni= float(request.form.get("vc"))
+            Pr = round(calculate_prandtl(ni,alpha),3)
+
+            return jsonify({"Pr":Pr})
+
+        if request.form.get("b") and request.form.get("a") and request.form.get("T1") and  request.form.get("T2") and request.form.get("LC") and request.form.get("ni"):
+
+            alpha=float(request.form.get("a"))
+            b=float(request.form.get("b"))
+            g = 9.81
+            T1=float(request.form.get("T1"))
+            T2 = float(request.form.get("T2"))
+            x=float(request.form.get("LC"))
+            ni=float(request.form.get("ni"))
+            Ra= round(calculate_rayleigh(g,b,T1,T2,x,ni,alpha),3)
+
+            return jsonify({"Ra":Ra})
+
+        if request.form.get("vo") and request.form.get("to") and request.form.get("do"):
+
+            u = float(request.form.get("vo"))
+            t= float(request.form.get("to"))
+            l = float(request.form.get("do"))
+            St = round(calculate_stokes(t,u,l),3)
+
+            return jsonify({"St":St})
+
+
+
+
+
 
     return render_template("dimensionless.html")
 
@@ -187,7 +258,7 @@ def register():
         session["user_id"] = new_user_id
         flash("Ya te has registrado!! :D")
 
-        return redirect(url_for("login"))
+        return redirect(url_for("index"))
     else:
         return render_template("register.html")
 
@@ -245,5 +316,3 @@ def logout():
 def about():
     """Acerca de"""
     return render_template("about.html")
-
-
